@@ -9,12 +9,18 @@ def home():
 
 
 # API at /api/v1/analysis/ 
-@app.route("/api/v1/analysis/", methods=['GET'])
+@app.route("/api/v1/analysis/", methods=['POST'])
 def analysis():
+    
     # Try to get the URI from the JSON
     try:
         get_json = request.get_json()
         image_uri = get_json['uri']
+        
+        t = open('test.txt','w')
+        t.write(image_uri)
+        t.close()
+
     except:
         return jsonify({'error': 'Missing URI in JSON'}), 400
     
